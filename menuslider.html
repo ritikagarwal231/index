@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      :root {
+        --modal-duration: 1s;
+        --primary-color: #38336b;
+        --secondary-color: #be2edd;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        transition: transform 0.3 s ease;
+      }
+      body.show-nav {
+        transform: translate(200px);
+      }
+      nav {
+        background-color: var(--primary-color);
+        border-right: 2px solid rgba(200, 200, 200, 0.1);
+        color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100vh;
+        z-index: 100;
+        transform: translateX(-100%);
+      }
+      nav .logo {
+        padding: 30px 0;
+        text-align: center;
+      }
+      nav .logo img {
+        height: 75px;
+        width: 75%;
+        border-radius: 50%;
+      }
+      nav ul {
+        padding: 0;
+        list-style-type: none;
+        margin: 0;
+      }
+      nav ul li {
+        border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+        padding: 20px;
+      }
+      nav ul li:first-of-type {
+        border-top: 2px solid rgba(200, 200, 200, 0.1);
+      }
+      nav ul li a {
+        text-decoration: none;
+        color: #fff;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+      header {
+        background-color: var(--primary-color);
+        color: #fff;
+        font-size: 130%;
+        position: relative;
+        padding: 40px 15px;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0;
+      }
+      header p {
+        margin: 30px 0;
+      }
+      button,
+      input[type="submit"] {
+        background-color: var(--secondary-color);
+        border: 0;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 12px;
+      }
+      button:focus {
+        outline: none;
+      }
+      .toggle {
+        background-color: rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+
+      .cta-button {
+        padding-left: 12px 30px;
+        font-size: 20px;
+      }
+      .container {
+        padding: 15px;
+        margin: 0 auto;
+        max-width: 100%;
+        width: 800px;
+      }
+
+      .modal-container {
+        background-color: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        display: none;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      .modal-container.show-modal {
+        display: block;
+      }
+      .modal {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        width: 400px;
+        animation-name: modalopen;
+        animation-duration: var(--modal-duration);
+      }
+      .modal-header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 15px;
+      }
+      .modal-header h3 {
+        margin: 0;
+        border-bottom: 1 px solid #333;
+      }
+      .modal-content {
+        padding: 20px;
+      }
+      .modal-form div {
+        margin: 15px;
+      }
+      .modal-form label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .modal-form .form-input {
+        padding: 8px;
+        width: 100%;
+      }
+      .close-btn {
+        background: transparent;
+        color: #fff;
+        z-index: 120;
+        font-size: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      @keyframes modalopen {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Landing Page</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img
+          src="https://randomuser.me/api/portraits/men/76.jpg"
+          alt="user"
+          srcset=""
+        />
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact Me</a></li>
+      </ul>
+    </nav>
+    <header>
+      <button class="toggle" id="toggle">
+        <i class="fa fa-bars fa-2x"></i>
+      </button>
+      <h1>My Landing Page</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, sequi?
+      </p>
+      <button class="cta-button" id="open">Sign Up</button>
+    </header>
+    <div class="container">
+      <h2>What is This landing Page about</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam eos
+        necessitatibus vero itaque maxime, illum sequi doloribus voluptatum
+        delectus quaerat aperiam odit exercitationem! Sapiente dolor est a ab
+        reiciendis optio.
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis a
+        ducimus sit alias fugit corrupti inventore ea omnis. Consequatur,
+        dolorum.
+      </p>
+      <h2>Tell Me More</h2>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora
+        inventore quisquam consectetur beatae natus quam! Accusantium in dolor
+        fuga laborum ut ipsam quam iure, doloremque esse dolorem consectetur!
+        Dicta iusto quisquam eum distinctio quos consequuntur perferendis
+        doloremque sunt, eligendi provident?
+      </p>
+      <h2>Benefits</h2>
+      <ul>
+        <li>
+          Lifetime Service
+        </li>
+        <li>
+          30 days Money Back
+        </li>
+        <li>Tailored Customer Support</li>
+      </ul>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis hic
+        eaque nesciunt facere, labore ducimus possimus sed minima odio dolore
+        porro. Voluptas architecto quibusdam voluptate facilis, reiciendis quos
+        totam est at esse accusantium aut, eum obcaecati fuga rem temporibus
+        ipsum ullam? Sequi iste officiis totam sed itaque consequatur facilis
+        non perspiciatis quia ducimus voluptas saepe beatae, commodi maxime
+        dolor! Soluta unde recusandae optio incidunt tempore qui, asperiores
+        ipsam itaque quia.
+      </p>
+    </div>
+    <!--Modal-->
+    <div class="modal-container" id="modal">
+      <div class="modal">
+        <button class="close-btn" id="close">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="modal-header">
+          <h3>Sign Up</h3>
+        </div>
+        <div class="modal-content">
+          <p>Register with us to get offers , suport and more</p>
+          <form class="modal-form">
+            <div>
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-input"
+                placeholder="Enter Name"
+              />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="Enter Email"
+              />
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input
+                class="form-input"
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+              />
+            </div>
+            <div>
+              <label for="password2">Confirm Password</label>
+              <input
+                class="form-input"
+                type="password"
+                id="password2"
+                placeholder="Confirm Password"
+              />
+            </div>
+            <input type="submit" value="submit" class="submit-btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle");
+      const close = document.getElementById("close");
+      const open = document.getElementById("open");
+      const modal = document.getElementById("modal");
+      //toggle nav
+      toggle.addEventListener("click", () =>
+        document.body.classList.toggle("show-nav")
+      );
+
+      //show modal
+
+      open.addEventListener("click", () => modal.classList.add("show-modal"));
+      //Hide Modal
+
+      close.addEventListener("click", () =>
+        modal.classList.remove("show-modal")
+      );
+      //Hide modal when clicked outside
+      window.addEventListener("click", (e) =>
+        e.target == modal ? modal.classList.remove("show-modal") : false
+      );
+    </script>
+  </body>
+</html>

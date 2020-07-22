@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #224941 url("./img1/bg.jpg") no-repeat center center/cover;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        min-height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        width: 300px;
+        margin: auto;
+        position: relative;
+        transform: scale(1);
+      }
+      .gradient-circle {
+        background: conic-gradient(
+          #55b7a4 0%,
+          #4ca493 40%,
+          #fff 40%,
+          #fff 60%,
+          #336d62 60%,
+          #2a5b52 100%
+        );
+        position: absolute;
+        height: 320px;
+        width: 320px;
+        top: -10px;
+        left: -10px;
+        z-index: -2;
+        border-radius: 50%;
+      }
+      .circle {
+        background-color: #010f1c;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        border-radius: 50%;
+      }
+      .pointer-container {
+        position: absolute;
+        top: -40px;
+        left: 140px;
+        width: 20px;
+        height: 190px;
+        transform-origin: bottom;
+        animation: rotate 7.5s linear forwards infinite;
+        -webkit-animation: rotate 7.5s linear forwards infinite;
+      }
+      .container.grow {
+        animation: grow 3s linear forwards;
+      }
+      .container.shrink {
+        animation: shrink 3s linear forwards;
+      }
+      .pointer {
+        background-color: #fff;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        display: block;
+      }
+
+      @keyframes rotate {
+        fron {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotate {
+        fron {
+          transform: rotate(0deg);
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes grow {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.2);
+        }
+      }
+      @keyframes shrink {
+        from {
+          transform: scale(1.2);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relaxer App</title>
+  </head>
+  <body>
+    <h1>Relaxer</h1>
+    <div class="container">
+      <div class="circle"></div>
+      <p id="text"></p>
+      <div class="pointer-container">
+        <div class="pointer"></div>
+      </div>
+      <div class="gradient-circle"></div>
+    </div>
+    <script>
+      const container = document.querySelector(".container");
+      const text = document.querySelector("#text");
+      const totalTime = 7500;
+      const breathTime = (totalTime / 5) * 2;
+      const holdTime = totalTime / 5;
+
+      breathAnimation();
+
+      function breathAnimation() {
+        text.innerHTML = "Breath In!";
+        container.className = "container grow";
+        setTimeout(() => {
+          text.innerText = "Hold";
+          setTimeout(() => {
+            text.innerText = "Breath Out!";
+            container.className = "container shrink";
+          }, holdTime);
+        }, breathTime);
+      }
+
+      setInterval(breathAnimation, totalTime);
+    </script>
+  </body>
+</html>
